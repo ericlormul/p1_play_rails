@@ -54,4 +54,8 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   root 'application#angular'
+
+  #in the future, should add API routes as here "match 'api', to: '' "
+  
+  match '/*any_path_except_API', to: 'application#angular', via: :all
 end
