@@ -25,7 +25,7 @@ Rails.application.configure do
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  # comment out for heroku by Eric
+  # comment out for heroku by Eric, they have already been compressed
   # config.assets.js_compressor = :uglifier 
   # config.assets.css_compressor = :sass
 
