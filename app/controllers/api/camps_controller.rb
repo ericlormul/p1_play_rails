@@ -1,9 +1,11 @@
 class Api::CampsController < ApplicationController
-  def get_camp
+  def get
     id = params[:id]
     camp = Camp.find(id)
     render json: camp
   end
 
-  # search method
+  def search
+    
+  end
 end

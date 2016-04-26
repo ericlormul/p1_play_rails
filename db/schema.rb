@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160425215158) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "camps", force: :cascade do |t|
     t.string   "name"
     t.text     "description"

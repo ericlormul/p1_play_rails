@@ -56,7 +56,8 @@ Rails.application.routes.draw do
   root 'application#angular'
 
   namespace :api do 
-    get 'camps/:id', to: 'camps#get_camp'
+    get 'camps/:id', to: 'camps#get'
+    get 'camps/search', to: 'camps#search'
   end
 
   match '/*any_path_except_API', to: 'application#angular', via: :all
