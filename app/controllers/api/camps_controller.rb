@@ -6,6 +6,7 @@ class Api::CampsController < ApplicationController
   end
 
   def search
-    
+    camps = Camp.search(params[:q])
+    render json: camps
   end
 end

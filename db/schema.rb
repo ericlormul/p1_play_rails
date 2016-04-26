@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425215158) do
+ActiveRecord::Schema.define(version: 20160426214911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,14 +23,17 @@ ActiveRecord::Schema.define(version: 20160425215158) do
     t.string   "provider"
     t.string   "homepage"
     t.integer  "price"
-    t.integer  "year"
+    t.string   "year"
     t.string   "season"
     t.string   "category"
     t.date     "start_date"
     t.date     "end_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.tsvector "tsv"
   end
+
+  add_index "camps", ["tsv"], name: "tsv_idx", using: :gin
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
