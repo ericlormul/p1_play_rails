@@ -1,7 +1,6 @@
 class Api::CampsController < ApplicationController
   def get
-    id = params[:id]
-    camp = Camp.find(id)
+    camp = Camp.get(params[:id])
     render json: camp
   end
 
