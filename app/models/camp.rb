@@ -8,6 +8,6 @@ class Camp < ActiveRecord::Base
   end
 
   def self.get(id)
-    return where('id = ?', id).select(@@fields)
+    return select(@@fields).find(id)
   end
 end
