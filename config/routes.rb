@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 
   namespace :api do 
     get 'camps/search/:q', to: 'camps#search'
+    get 'camps/category/:c', to: 'camps#get_by_category'
     get 'camps/:id', to: 'camps#get'
   end
 

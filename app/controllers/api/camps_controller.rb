@@ -8,4 +8,9 @@ class Api::CampsController < ApplicationController
     camps = Camp.search(params[:q])
     render json: camps
   end
+
+  def get_by_category
+    camps = Camp.get_by_category(params[:c])
+    render json: camps
+  end
 end
