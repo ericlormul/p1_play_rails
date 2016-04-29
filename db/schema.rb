@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426214911) do
+ActiveRecord::Schema.define(version: 20160428221133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
+    t.integer  "person_id"
+    t.string   "auth_token"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "camps", force: :cascade do |t|
     t.string   "name"
@@ -35,11 +43,20 @@ ActiveRecord::Schema.define(version: 20160426214911) do
 
   add_index "camps", ["tsv"], name: "tsv_idx", using: :gin
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
+  create_table "people", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "phone"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "nickname"
+    t.date     "birthday"
+    t.integer  "location_id"
+    t.string   "role"
+    t.datetime "deleted_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
   end
 
 end

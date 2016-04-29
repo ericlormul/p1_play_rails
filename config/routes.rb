@@ -59,6 +59,9 @@ Rails.application.routes.draw do
     get 'camps/search/:q', to: 'camps#search'
     get 'camps/category/:c', to: 'camps#get_by_category'
     get 'camps/:id', to: 'camps#get'
+
+    get 'authentication', to: 'authentications#authenticate'
+    match 'signup', to: 'authentications#signup', via: [:post]    
   end
 
   match '/*any_path_except_API', to: 'application#angular', via: :all
