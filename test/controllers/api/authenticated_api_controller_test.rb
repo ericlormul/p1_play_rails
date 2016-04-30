@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CampTest < ActiveSupport::TestCase
+class Api::AuthenticatedApiControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

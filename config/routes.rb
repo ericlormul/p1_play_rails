@@ -56,9 +56,10 @@ Rails.application.routes.draw do
   root 'application#angular'
 
   namespace :api do 
-    get 'camps/search/:q', to: 'camps#search'
-    get 'camps/category/:c', to: 'camps#get_by_category'
-    get 'camps/:id', to: 'camps#get'
+    match 'programs/create', to: 'programs#create', via: [:post]
+    get 'programs/search/:q', to: 'programs#search'
+    get 'programs/category/:c', to: 'programs#get_by_category'
+    get 'programs/:id', to: 'programs#get'    
 
     get 'authentication', to: 'authentications#authenticate'
     match 'signup', to: 'authentications#signup', via: [:post]    

@@ -1,6 +1,6 @@
-class Camp < ActiveRecord::Base
+class Program < ActiveRecord::Base
   private
-  @@fields = "id, name, description, pic_url, provider, homepage, price, year, season, category, start_date, end_date"
+  @@fields = "id, name, description, website, category, age_start, age_end, refund_policy, syllabus, application_detail, contact_info"
 
   def self.search(query)
     where_clause = sanitize_sql_array(["tsv @@ tsquery(?)", query.strip.gsub(/\+/, '&')])
@@ -13,5 +13,5 @@ class Camp < ActiveRecord::Base
 
   def self.get_by_category(category)
     return select(@@fields).where("category = ?", category).order('created_at DESC')
-  end
+  end  
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428221133) do
+ActiveRecord::Schema.define(version: 20160429212629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,5 +58,25 @@ ActiveRecord::Schema.define(version: 20160428221133) do
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
   end
+
+  create_table "programs", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "photo_id"
+    t.integer  "provider_id"
+    t.string   "website"
+    t.string   "category"
+    t.integer  "age_start"
+    t.integer  "age_end"
+    t.text     "refund_policy"
+    t.text     "syllabus"
+    t.text     "application_detail"
+    t.text     "contact_info"
+    t.tsvector "tsv"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "programs", ["tsv"], name: "tsv_idx_on_program", using: :gin
 
 end
