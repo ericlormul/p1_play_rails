@@ -5,8 +5,8 @@ class CreateSessions < ActiveRecord::Migration
       t.date :end_date
       t.text :description
       t.integer :capacity
-      t.integer :program_id
-      t.integer :location_id
+      t.belongs_to :program, index: true
+      t.belongs_to :location, index: true
       t.integer :start_time_of_day
       t.integer :end_time_of_day
       t.integer :duration 
@@ -17,7 +17,5 @@ class CreateSessions < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :sessions, :program_id
-    add_index :sessions, :location_id
   end
 end

@@ -13,5 +13,10 @@ class Program < ActiveRecord::Base
 
   def self.get_by_category(category)
     return select(@@fields).where("category = ?", category).order('created_at DESC')
-  end  
+  end
+
+  has_many :areas
+  has_many :reviews
+  has_many :photos
+  has_many :sessions
 end
