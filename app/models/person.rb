@@ -7,4 +7,8 @@ class Person < ActiveRecord::Base
   def generate_auth_token
     Authentication.create(person_id: self.id, auth_token: SecureRandom.hex)
   end
+
+  has_many :authentications
+  has_many :reviews
+  has_one :location
 end
