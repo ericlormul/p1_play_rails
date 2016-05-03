@@ -1,31 +1,42 @@
 class Api::ProgramsController < Api::AuthenticatedApiController 
   def create
-    person = authenticate_token
-    unless person && person.role == 'admin'
-      render json: { error: 'Bad Token'}, status: 401
+    if !is_admin
       return
     end
-    Program.create(permit_program)
-    render json: {status: 'created'}, status: 201
+    program = Program.create(permit_program)
+    render json: {status: 'created', id: program.id}, status: 201
   end
 
   def get
-    camp = Program.get(params[:id])
-    render json: camp
+    program = Program.get(params[:id])
+    render json: program
+  end
+
+  def get_full
+    
+  end
+
+  def update
+    if !is_admin
+      return
+    end
+    program = permit_program
+    program = Program.update(program[:id], program)
+    render json: {status: 'updated', id: program.id}, status: 200
   end
 
   def search
-    camps = Program.search(params[:q])
-    render json: camps
+    programs = Program.search(params[:q])
+    render json: programs
   end
 
   def get_by_category
-    camps = Program.get_by_category(params[:c])
-    render json: camps
+    programs = Program.get_by_category(params[:c])
+    render json: programs
   end  
 
   private
   def permit_program
-    params.require(:program).permit(:name, :description, :photo_id, :provider_id, :website, :category, :age_start, :age_end, :refund_policy, :syllabus, :application_detail, :contact_info)
+    params.require(:program).permit(:id, :name, :summary, :description, :photo_id, :provider_id, :website, :category, :age_start, :age_end, :refund_policy, :syllabus, :application_detail, :contact_info)
   end
 end

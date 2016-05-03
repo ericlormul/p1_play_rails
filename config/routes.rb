@@ -57,9 +57,19 @@ Rails.application.routes.draw do
 
   namespace :api do 
     match 'programs/create', to: 'programs#create', via: [:post]
+    match 'programs/update', to: 'programs#update', via: [:post]
     get 'programs/search/:q', to: 'programs#search'
     get 'programs/category/:c', to: 'programs#get_by_category'
     get 'programs/:id', to: 'programs#get'    
+
+    get 'providers/all', to: 'providers#get_all'
+    get 'providers/:id', to: 'providers#get'
+    match 'providers/update', to: 'providers#update', via: [:post]
+    match 'providers/create', to: 'providers#create', via: [:post]
+
+    get 'sessions/:id', to: 'sessions#get'
+    match 'sessions/update', to: 'sessions#update', via: [:post]
+    match 'sessions/create', to: 'sessions#create', via: [:post]    
 
     get 'authentication', to: 'authentications#authenticate'
     match 'signup', to: 'authentications#signup', via: [:post]    
