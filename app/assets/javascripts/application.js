@@ -13,3 +13,5 @@
 //= require ckeditor/init
 //= require shims.js
 //= require app.js
+//= require pickadate/picker
+//= require pickadate/picker.date
