@@ -39,6 +39,29 @@ class Api::SessionsController < Api::AuthenticatedApiController
     render json: {session: session, location: location}
   end
 
+  def get_by_program
+    session_fields = [:id, :start_date,:end_date, :description, :capacity,:start_time_of_day, :end_time_of_day, :duration, :price, :prerequisite, :currency_code, :price_details]
+    location_fields = [:address, :city, :state,:country, :zipcode]
+    sessions = Session.where("program_id = ?", params[:program_id])
+    result = []
+
+    for session in sessions
+      s = {}
+      for field in session_fields
+        s[field] = session[field];
+      end
+
+      location = session.location
+      s[:location] = {}
+      for field in location_fields
+        s[:location][field] = location[field]
+      end
+      result.push(s)
+    end
+
+    render json: result
+  end
+
   private
   def session_params
     params.require(:session).permit(:id, :start_date, :end_date, :description, :capacity, :program_id, :location_id, :start_time_of_day, :end_time_of_day, :duration, :price, :prerequisite, :currency_code, :price_details)

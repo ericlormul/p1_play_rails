@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     match 'providers/update', to: 'providers#update', via: [:post]
     match 'providers/create', to: 'providers#create', via: [:post]
 
+    get 'sessions/program/:program_id', to: 'sessions#get_by_program'
     get 'sessions/:id', to: 'sessions#get'
     match 'sessions/update', to: 'sessions#update', via: [:post]
     match 'sessions/create', to: 'sessions#create', via: [:post]    

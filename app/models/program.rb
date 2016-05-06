@@ -9,7 +9,7 @@ class Program < ActiveRecord::Base
   @@fields = "id, name, summary, description, provider_id, website, category, age_start, age_end, refund_policy, syllabus, application_detail, contact_info"
 
   def self.search(query)
-    where_clause = sanitize_sql_array(["tsv @@ tsquery(?)", query.strip.gsub(/\+/, '&')])
+    where_clause = sanitize_sql_array(["tsv @@ to_tsquery(?)", query.strip.gsub(/\+/, '&')])
     return select(@@fields).where(where_clause)
   end
 
